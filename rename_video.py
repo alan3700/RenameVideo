@@ -6,34 +6,9 @@ import tkinter as tk
 from tkinter import filedialog
 
 def get_cleaned_video_title(filename):
-    # Extraire le titre à partir du nom du fichier en supprimant l'extension
-    title, ext = os.path.splitext(filename)
-    # Supprimer la date
-    title = re.sub(r'\d{4}', '', title)
-    title = title.replace('TRUEFRENCH', '').replace('HDRip', '')
-    title = title.replace('wawacityfoo', '')
-    title = title.replace('Wawacityfoo', '')
-    title = title.replace('wawacity', '')
-    title = title.replace('Wawacity', '')
-    title = title.replace('vost', '')
-    title = title.replace('Hdrip', '')
-    title = title.replace('HDRip', '')
-    title = title.replace('HDrip', '')
-    title = title.replace('BDrip', '')
-    title = title.replace('Bdrip', '')
-    title = title.replace('BDRip', '')
-    title = title.replace('vostfr', '')
-    title = title.replace('Vost', '')
-    title = title.replace('vost', '')
-    title = title.replace('Vostfr', '')
-    title = title.replace('H264', '')
-    title = title.replace('rocks', '')
-    title = title.replace('X264', '')
-    title = title.replace('x264', '')
-    title = title.replace('blue', '')
-    # Nettoyer les espaces et caractères spéciaux restants
-    cleaned_title = ''.join(e for e in title if e.isalnum() or e.isspace())
-    return cleaned_title.strip()
+    nom_film, extension = os.path.splitext(filename)
+    nom_film = re.sub(r'[^a-zA-Z0-9\s]', '', nom_film)
+    return f"{nom_film}"
 
 def get_video_title_from_metadata(metadata):
     # Vérifier si les métadonnées contiennent un titre
